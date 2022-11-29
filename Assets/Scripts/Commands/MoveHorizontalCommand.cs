@@ -17,11 +17,23 @@ public class MoveHorizontalCommand : Command
     [SerializeField] public float speed = 1f;
     [SerializeField] public double directionChangeTimeout = 3;
     private Direction direction = Direction.None;
-    private GameObject player;
+    private BaseUnit unit;
 
-    public override void Execute(GameObject player)
+    public MoveHorizontalCommand(string name): base(name)
     {
-        this.player = player;
+
+    }
+
+    
+    public override bool IsFinished(BaseUnit unit)
+    {
+        return true;
+    }
+
+
+    public override void Execute(BaseUnit unit)
+    {
+        this.unit = unit;
         direction = Direction.Right;
 
         var task = Task.Run(async () => {
@@ -44,11 +56,11 @@ public class MoveHorizontalCommand : Command
     {
         if (direction == Direction.Right)
         {
-            player.transform.position = new Vector3(player.transform.position.x + speed * Time.deltaTime, player.transform.position.y);
+            unit.transform.position = new Vector3(unit.transform.position.x + speed * Time.deltaTime, unit.transform.position.y);
         } 
         else if (direction == Direction.Left)
         {
-            player.transform.position = new Vector3(player.transform.position.x - speed * Time.deltaTime, player.transform.position.y);
+            unit.transform.position = new Vector3(unit.transform.position.x - speed * Time.deltaTime, unit.transform.position.y);
         }
     }
 }

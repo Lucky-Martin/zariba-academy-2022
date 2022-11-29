@@ -17,11 +17,22 @@ public class MoveForwardCommand : Command
     [SerializeField] public float speed = 1f;
     [SerializeField] public double directionChangeTimeout = 3;
     private Direction direction = Direction.None;
-    private GameObject player;
+    private BaseUnit player;
 
-    public override void Execute(GameObject player)
+
+    public override bool IsFinished(BaseUnit unit)
     {
-        this.player = player;
+        return true;
+    }
+
+    public MoveForwardCommand(string name): base(name)
+    {
+        
+    }
+
+    public override void Execute(BaseUnit unit)
+    {
+        this.player = unit;
         direction = Direction.Forward;
 
         var task = Task.Run(async () => {

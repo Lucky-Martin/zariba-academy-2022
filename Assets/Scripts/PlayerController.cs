@@ -9,6 +9,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        command.GetComponent<Command>().Execute(this.gameObject);
+        // command.GetComponent<Command>().Execute(this.gameObject);
     }
 }
