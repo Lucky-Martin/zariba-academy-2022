@@ -25,8 +25,8 @@ public class UserInputScript : MonoBehaviour
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         movementDirection.Normalize();
 
-        transform.Translate(movementDirection * speed * Time.deltaTime);
-        // transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);      
+        // transform.Translate(movementDirection * speed * Time.deltaTime);
+        transform.Translate(movementDirection * speed * Time.deltaTime);      
 
         if (movementDirection != Vector3.zero) {
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);

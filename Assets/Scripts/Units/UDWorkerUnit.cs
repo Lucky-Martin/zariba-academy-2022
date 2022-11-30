@@ -8,16 +8,16 @@ public class UDWorkerUnit : CommandableUnit
     void Start()
     {
         
-        Animator animatorController = GetComponent<Animator>();
-        animatorController.Play("UD_worker_01_idle_A");
-        
-
-        Command MoveCommand = new MoveCommand(1);
+        base.Start();
+        Command MoveCommandForward = new MoveCommand(1, Vector3.forward);
+        Command MoveCommandLeft = new MoveCommand(10, Vector3.left);
         AConditionalCommand DoesSeeCommand = new SeeConditionalCommand();
-        MoveCommand.SetNextCommand(DoesSeeCommand);
-        DoesSeeCommand.SetFailureCommand(MoveCommand); 
 
-        setStartCommand(MoveCommand);
+        MoveCommandForward.SetNextCommand(DoesSeeCommand);
+        DoesSeeCommand.SetFailureCommand(MoveCommandForward); 
+        DoesSeeCommand.SetSuccessCommand(MoveCommandLeft);
+
+        setStartCommand(MoveCommandForward);
     }
 
     // Update is called once per frame
