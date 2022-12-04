@@ -8,6 +8,7 @@ public enum AnimationStates
     CombatIdle,
     Walk,
     CombatWalk,
+    Search,
     Run,
     Attack,
     Charge,

@@ -14,12 +14,12 @@ public abstract class Command
         Name = name; //for debug purposes
     }
 
+    public abstract bool IsFinished(BaseUnit unit);
+
     public virtual void Execute(BaseUnit unit)
     {
         Debug.Log("Command \""+Name+"\" - Game Object" + unit);
     }
-
-    public abstract bool IsFinished(BaseUnit unit);
 
     public virtual Command? GetNextCommand(BaseUnit unit)
     {

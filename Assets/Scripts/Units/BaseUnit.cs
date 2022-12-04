@@ -36,22 +36,52 @@ public class BaseUnit : MonoBehaviour
         return SightRange;
     }
 
+    public void startSearching()
+    {
+
+    }
+
+    public void toggleAnimatorBool(string boolName)
+    {
+        bool boolValue = animatorController.GetBool(boolName);
+        animatorController.SetBool(boolName, !boolValue);
+    }
+
+    public void setAnimationState(AnimationStates state, bool value)
+    {
+        switch(state) {
+            case AnimationStates.Walk:
+                animatorController.SetBool("IsMoving", value);
+            break;
+            case AnimationStates.Search:
+                animatorController.SetBool("IsSearching", value);
+            break;
+        }
+    }
+
+    // public void startSearching()
+    // {
+    //     animatorController.toggleAnimatorBool("IsSearching");
+    // }
+
+    // public void stopSearching();
+
     public void startMoving()
     {
-        Debug.Log(animatorController);
-        Debug.Log(animatorController.GetBool("IsMoving"));
-        if( animatorController.GetBool("IsMoving") ) {
-            return;
-        }
-        animatorController.SetBool("IsMoving", true);
+        // Debug.Log(animatorController);
+        // Debug.Log(animatorController.GetBool("IsMoving"));
+        // if( animatorController.GetBool("IsMoving") ) {
+        //     return;
+        // }
+        // animatorController.SetBool("IsMoving", true);
     }
     
     public void stopMoving() 
     {
-        if( !animatorController.GetBool("IsMoving") ) {
-            return;
-        }
-        animatorController.SetBool("IsMoving", false);
+        // if( !animatorController.GetBool("IsMoving") ) {
+        //     return;
+        // }
+        // animatorController.SetBool("IsMoving", false);
     }
 
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SeeConditionalCommand : AConditionalCommand
 {
+    //Time as float
+    protected decimal LookAroundTime = 2;
 
     public SeeConditionalCommand() : base("See command") {}
 
@@ -19,5 +21,10 @@ public class SeeConditionalCommand : AConditionalCommand
         }
 
         return false;
+    }
+
+    public override decimal TimeBeforeFinish()
+    {
+        return LookAroundTime;
     }
 }

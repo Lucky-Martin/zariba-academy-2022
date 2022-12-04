@@ -9,7 +9,8 @@ public class UDWorkerUnit : CommandableUnit
     {
         
         base.Start();
-        Command MoveCommandForward = new MoveCommand(1, Vector3.forward);
+        //Debug comand
+        Command MoveCommandForward = new MoveCommand(2, Vector3.forward);
         Command MoveCommandLeft = new MoveCommand(10, Vector3.left);
         AConditionalCommand DoesSeeCommand = new SeeConditionalCommand();
 

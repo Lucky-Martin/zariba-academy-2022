@@ -22,9 +22,9 @@ public class MoveCommand : Command
         if(startPosition == null) {
             startPosition = unit.transform.position;
             endPosition = unit.transform.position + Step * (Direction);
+            unit.setAnimationState(AnimationStates.Walk, true);
         }
-
-        unit.startMoving();        
+       
         unit.transform.position = Vector3.MoveTowards(unit.transform.position, endPosition ?? Vector3.one , unit.GetSpeed() * Time.deltaTime);
 
         // // Vector3 rotationDirection = endPosition - unit.transform.position;
@@ -41,7 +41,7 @@ public class MoveCommand : Command
             return false;
         }
 
-        unit.stopMoving();
+        unit.setAnimationState(AnimationStates.Walk, false);
         startPosition = null;
         endPosition = null;
 
