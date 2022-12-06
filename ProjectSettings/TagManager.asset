@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Resource
   - Wood
+  - Canvas
   layers:
   - Default
   - TransparentFX
