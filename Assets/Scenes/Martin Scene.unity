@@ -209,15 +209,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400052, guid: ccdbc2dce49b9de4586e250299d84a80, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400052, guid: ccdbc2dce49b9de4586e250299d84a80, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9914449
       objectReference: {fileID: 0}
     - target: {fileID: 400052, guid: ccdbc2dce49b9de4586e250299d84a80, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.13052616
       objectReference: {fileID: 0}
     - target: {fileID: 400052, guid: ccdbc2dce49b9de4586e250299d84a80, type: 3}
       propertyPath: m_LocalRotation.y
@@ -229,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400052, guid: ccdbc2dce49b9de4586e250299d84a80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 400052, guid: ccdbc2dce49b9de4586e250299d84a80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -485,6 +485,7 @@ GameObject:
   - component: {fileID: 1544100826}
   - component: {fileID: 1544100825}
   - component: {fileID: 1544100824}
+  - component: {fileID: 1544100827}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -525,7 +526,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 55
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -550,14 +551,28 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544100823}
-  m_LocalRotation: {x: 0.12437128, y: -0, z: -0, w: 0.9922358}
-  m_LocalPosition: {x: 0, y: 3, z: -7}
+  m_LocalRotation: {x: 0.49999997, y: -0, z: -0, w: 0.8660255}
+  m_LocalPosition: {x: 1, y: 10.246246, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1882505420}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 14.289, y: 0, z: 0}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+--- !u!114 &1544100827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544100823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa7fc6a81a26ea40bf48dfb488ef40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1882505417}
+  zOffset: -10
 --- !u!1 &1852064280
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,14 +680,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852064280}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 2, z: 3}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: -4.11, y: 2, z: -0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!1 &1882505417 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100050, guid: ccdbc2dce49b9de4586e250299d84a80, type: 3}
@@ -694,11 +709,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!4 &1882505420 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400052, guid: ccdbc2dce49b9de4586e250299d84a80, type: 3}
-  m_PrefabInstance: {fileID: 234979818}
-  m_PrefabAsset: {fileID: 0}
 --- !u!65 &1882505421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -712,7 +722,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5968634, z: 1}
   m_Center: {x: 0, y: 0.75514954, z: 0}
---- !u!114 &1882505422
+--- !u!114 &1882505424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -721,8 +731,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1882505417}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b08ed27cd2fb791448df93a10d3f806f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ea39b0a42feafd4d945390002d886a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  rotationSpeed: 300
+  speed: 5
+  rotationSpeed: 720
