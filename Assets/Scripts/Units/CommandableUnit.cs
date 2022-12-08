@@ -43,4 +43,15 @@ public class CommandableUnit : BaseUnit, IWorkerScript
             }
         }
     }
+
+    public void OnMouseOver()
+    {
+        if(Input.GetMouseButtonDown(0)) {
+            Debug.Log("Click");
+            GameObject panelObject = GameObject.Find("CommandPanel");
+            CommandPanelScript script = panelObject.GetComponent<CommandPanelScript>();
+
+            script.OpenPanel();
+        }
+    }
 }
