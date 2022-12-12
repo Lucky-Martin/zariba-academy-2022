@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 170012, guid: cc2054e9ef8b30440b6d4c873d3f0c90, type: 3}
       propertyPath: m_Name
-      value: UD_light_infantry_A
+      value: 'Enemy '
       objectReference: {fileID: 0}
     - target: {fileID: 417504, guid: cc2054e9ef8b30440b6d4c873d3f0c90, type: 3}
       propertyPath: m_RootOrder

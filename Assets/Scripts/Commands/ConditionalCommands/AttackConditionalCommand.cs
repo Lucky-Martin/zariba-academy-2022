@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class AttackConditionalCommand : AConditionalCommand
 {   //Time as float
     protected decimal LookAroundTime = 2;
+    [SerializeField] public float speed = 1.0f;
 
     public AttackConditionalCommand() : base("Attack command") { }
 
@@ -15,7 +18,21 @@ public class AttackConditionalCommand : AConditionalCommand
         {
             if (collidedObject.tag == "Player")
             {
-                Debug.Log($"Player found at pos {collidedObject.transform.position}");
+                Animator animator = unit.GetComponent<Animator>();
+                Vector3 unitPosition = unit.transform.position;
+                Vector3 targetPosition = collidedObject.transform.position;
+                Debug.Log($"Player found at pos {targetPosition}");
+
+                animator.SetBool("Running", true);
+                var step = speed * Time.deltaTime;
+                unit.transform.position = Vector3.MoveTowards(unitPosition, targetPosition, step);
+
+                if (Vector3.Distance(unitPosition, targetPosition) < 0.001f)
+                {
+                    animator.SetBool("Running", false);
+                    animator.SetBool("Attacking", true);
+                }
+
                 return true;
             }
         }
