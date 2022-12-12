@@ -8,6 +8,7 @@ public class PlayerMovementScript : MonoBehaviour
 {
     [SerializeField] public float speed;
     [SerializeField] public float rotationSpeed;
+    private Animator animator;
     private SceneValues SceneValues;
     private Rigidbody body;
 
@@ -16,6 +17,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         
         body = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         GameObject sceneValues = GameObject.Find("SceneValues");
         SceneValues = sceneValues.GetComponent<SceneValues>();
         if(SceneValues != null) {
@@ -36,8 +38,17 @@ public class PlayerMovementScript : MonoBehaviour
 
         if (movementDirection != Vector3.zero)
         {
+            if (!animator.GetBool("Walking"))
+            {
+                animator.SetBool("Walking", true);
+            }
+
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("Walking", false);
         }
 
         if(body.position.y < -20 && SceneValues != null) {

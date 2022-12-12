@@ -5,21 +5,20 @@ using UnityEngine;
 public class UDWorkerUnit : CommandableUnit
 {
     // Start is called before the first frame update
-    // void Start()
-    // {
-        
-    //     base.Start();
-    //     // //Debug comand
-    //     // Command MoveCommandForward = new MoveCommand(2, Vector3.forward);
-    //     // Command MoveCommandLeft = new MoveCommand(10, Vector3.left);
-    //     // AConditionalCommand DoesSeeCommand = new SeeConditionalCommand();
+    void Start()
+    {
 
-    //     // MoveCommandForward.SetNextCommand(DoesSeeCommand);
-    //     // DoesSeeCommand.SetFailureCommand(MoveCommandForward); 
-    //     // DoesSeeCommand.SetSuccessCommand(MoveCommandLeft);
+        base.Start();
+         //Debug comand
+         Command MoveCommandForward = new MoveCommand(2, Vector3.forward);
+         AConditionalCommand AttackCommand = new AttackConditionalCommand();
 
-    //     // setStartCommand(MoveCommandForward);
-    // }
+         MoveCommandForward.SetNextCommand(AttackCommand);
+         AttackCommand.SetFailureCommand(MoveCommandForward);
+         AttackCommand.SetSuccessCommand(MoveCommandForward);
+
+         setStartCommand(AttackCommand);
+    }
 
     // Update is called once per frame
     new void Update()
