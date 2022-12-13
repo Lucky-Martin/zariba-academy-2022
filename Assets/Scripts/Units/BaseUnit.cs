@@ -7,6 +7,7 @@ public class BaseUnit : MonoBehaviour
 
     [SerializeField] protected int CurrentHP;
     [SerializeField] protected int Speed;
+    [SerializeField] protected int RotationSpeed;
     [SerializeField] protected int SightRange;
     [SerializeField] protected int AttackRange;
     [SerializeField] protected int MaxHP;
@@ -16,7 +17,6 @@ public class BaseUnit : MonoBehaviour
     public void Start()
     {
         animatorController = GetComponent<Animator>();
-        Debug.Log("AAAAAAAAAAAAAAA!", animatorController);
 
     }
 
@@ -36,6 +36,11 @@ public class BaseUnit : MonoBehaviour
         return SightRange;
     }
 
+    public int GetRotationSpeed()
+    {
+        return RotationSpeed;
+    }
+
     public void startSearching()
     {
 
@@ -51,10 +56,13 @@ public class BaseUnit : MonoBehaviour
     {
         switch(state) {
             case AnimationStates.Walk:
-                animatorController.SetBool("IsMoving", value);
+                animatorController.SetBool("Walking", value);
             break;
             case AnimationStates.Search:
-                animatorController.SetBool("IsSearching", value);
+                animatorController.SetBool("Searching", value);
+            break;
+            case AnimationStates.Run:
+                animatorController.SetBool("Running", value);
             break;
         }
     }

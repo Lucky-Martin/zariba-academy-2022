@@ -11,13 +11,14 @@ public class PlayerMovementScript : MonoBehaviour
     private Animator animator;
     private SceneValues SceneValues;
     private Rigidbody body;
-
+    private PlayerCombat playerCombat;
 
     void Start()
     {
         
         body = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        playerCombat = GetComponent<PlayerCombat>();
         GameObject sceneValues = GameObject.Find("SceneValues");
         SceneValues = sceneValues.GetComponent<SceneValues>();
         if(SceneValues != null) {
@@ -28,6 +29,12 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerCombat.GetAttackingState())
+        {
+            animator.SetBool("Walking", false);
+            return;
+        }
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 

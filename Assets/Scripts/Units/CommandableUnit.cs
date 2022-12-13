@@ -14,6 +14,7 @@ public class CommandableUnit : BaseUnit, IWorkerScript
     
     public void setStartCommand(Command startCommand) {
         StartCommand = startCommand;
+
         CurrentCommand = StartCommand;
     }
 

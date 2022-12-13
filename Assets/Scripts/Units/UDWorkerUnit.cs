@@ -9,19 +9,17 @@ public class UDWorkerUnit : CommandableUnit
     {
 
         base.Start();
-         //Debug comand
-         Command MoveCommandForward = new MoveCommand(2, Vector3.forward);
-         AConditionalCommand AttackCommand = new AttackConditionalCommand();
+        //Debug comand
+        AConditionalCommand seePlayerCommand = new SeePlayerConditionalCommand();
+        RunToPlayerCommand runToPlayerCommand = new RunToPlayerCommand();
 
-         MoveCommandForward.SetNextCommand(AttackCommand);
-         AttackCommand.SetFailureCommand(MoveCommandForward);
-         AttackCommand.SetSuccessCommand(MoveCommandForward);
+        seePlayerCommand.SetSuccessCommand(runToPlayerCommand);
 
-         setStartCommand(AttackCommand);
+        setStartCommand(seePlayerCommand);
     }
 
     // Update is called once per frame
-    new void Update()
+    void Update()
     {
         RunCommands();
     }

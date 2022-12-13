@@ -14,7 +14,6 @@ public class MoveCommand : Command
     {
         Step = step;
         Direction = direction;
-
     }
 
     public override void Execute(BaseUnit unit)

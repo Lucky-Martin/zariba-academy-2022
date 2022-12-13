@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +28,7 @@ public abstract class AConditionalCommand : Command
             HasFinished = true;
             RemainingTime = TimeBeforeFinish();
         }
-        Debug.Log("Command \""+Name+"\" - Game Object" + unit);
+        //Debug.Log("Command \""+Name+"\" - Game Object" + unit);
     }
 
     public override Command? GetNextCommand(BaseUnit unit)
