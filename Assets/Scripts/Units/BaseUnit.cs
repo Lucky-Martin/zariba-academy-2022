@@ -64,6 +64,9 @@ public class BaseUnit : MonoBehaviour
             case AnimationStates.Run:
                 animatorController.SetBool("Running", value);
             break;
+            case AnimationStates.Attack:
+                animatorController.SetTrigger("Attack");
+            break;
         }
     }
 

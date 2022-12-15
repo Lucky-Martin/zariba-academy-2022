@@ -42,7 +42,7 @@ public class RunToPlayerCommand : Command
             return false;
         }
 
-        unit.setAnimationState(AnimationStates.Run, false);;
+        unit.setAnimationState(AnimationStates.Run, false);
 
         return true;
     }

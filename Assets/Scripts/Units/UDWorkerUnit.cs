@@ -12,7 +12,9 @@ public class UDWorkerUnit : CommandableUnit
         //Debug comand
         AConditionalCommand seePlayerCommand = new SeePlayerConditionalCommand();
         RunToPlayerCommand runToPlayerCommand = new RunToPlayerCommand();
+        AttackPlayerCommand attackPlayerCommand = new AttackPlayerCommand();
 
+        runToPlayerCommand.SetNextCommand(attackPlayerCommand);
         seePlayerCommand.SetSuccessCommand(runToPlayerCommand);
 
         setStartCommand(seePlayerCommand);
