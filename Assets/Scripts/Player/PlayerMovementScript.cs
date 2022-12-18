@@ -13,6 +13,9 @@ public class PlayerMovementScript : MonoBehaviour
     private Rigidbody body;
     private PlayerCombat playerCombat;
 
+    [Header("Events")]
+    public GameEvent onScoreChange;
+
     void Start()
     {
         
@@ -20,15 +23,23 @@ public class PlayerMovementScript : MonoBehaviour
         animator = GetComponent<Animator>();
         playerCombat = GetComponent<PlayerCombat>();
         GameObject sceneValues = GameObject.Find("SceneValues");
-        SceneValues = sceneValues.GetComponent<SceneValues>();
-        if(SceneValues != null) {
-            Debug.Log(SceneValues.HasGameFinished);
+        if(sceneValues != null) {
+            SceneValues = sceneValues.GetComponent<SceneValues>();
+            if(SceneValues != null) {
+                Debug.Log(SceneValues.HasGameFinished);
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("space"))
+        {
+            print("space key was pressed");
+            onScoreChange?.Raise(this, 50f);
+        }
+
         if (playerCombat.GetAttackingState())
         {
             animator.SetBool("Walking", false);

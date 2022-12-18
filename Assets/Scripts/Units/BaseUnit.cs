@@ -59,7 +59,7 @@ public class BaseUnit : MonoBehaviour
                 animatorController.SetBool("Walking", value);
             break;
             case AnimationStates.Search:
-                animatorController.SetBool("Searching", value);
+                animatorController.SetBool("IsSearching", value);
             break;
             case AnimationStates.Run:
                 animatorController.SetBool("Running", value);

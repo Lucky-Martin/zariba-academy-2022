@@ -10,14 +10,14 @@ public class UDWorkerUnit : CommandableUnit
 
         base.Start();
         //Debug comand
-        AConditionalCommand seePlayerCommand = new SeePlayerConditionalCommand();
-        RunToPlayerCommand runToPlayerCommand = new RunToPlayerCommand();
-        AttackPlayerCommand attackPlayerCommand = new AttackPlayerCommand();
+        // AConditionalCommand seePlayerCommand = new SeePlayerConditionalCommand();
+        // RunToPlayerCommand runToPlayerCommand = new RunToPlayerCommand();
+        // AttackPlayerCommand attackPlayerCommand = new AttackPlayerCommand();
 
-        runToPlayerCommand.SetNextCommand(attackPlayerCommand);
-        seePlayerCommand.SetSuccessCommand(runToPlayerCommand);
+        // runToPlayerCommand.SetNextCommand(attackPlayerCommand);
+        // seePlayerCommand.SetSuccessCommand(runToPlayerCommand);
 
-        setStartCommand(seePlayerCommand);
+        // setStartCommand(seePlayerCommand);
     }
 
     // Update is called once per frame
