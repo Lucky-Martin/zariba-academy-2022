@@ -18,6 +18,9 @@ public class PlayerMovementScript : MonoBehaviour
     public GameEvent waveCleared;
     public GameEvent addExperience;
 
+    // debuging purposes
+    public float wave = 0f;
+
     void Start()
     {
         
@@ -45,7 +48,7 @@ public class PlayerMovementScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q))
         {
             print("Q key was pressed");
-            waveCleared?.Raise(this, 1f);
+            waveCleared?.Raise(this, ++wave);
         }
 
         if(Input.GetKeyDown(KeyCode.E))

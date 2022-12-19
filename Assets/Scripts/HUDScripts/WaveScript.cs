@@ -7,7 +7,7 @@ public class WaveScript : ABaseStatsScript
     public override void HandleEvent(Component sender, object data)
     {
         if(data is float) {
-            triggerValueIncrease((float) data);
+            triggerValueIncrease(-1 * (FinalValue - (float) data));
         }
     }
 }
