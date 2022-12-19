@@ -15,6 +15,8 @@ public class PlayerMovementScript : MonoBehaviour
 
     [Header("Events")]
     public GameEvent onScoreChange;
+    public GameEvent waveCleared;
+    public GameEvent addExperience;
 
     void Start()
     {
@@ -38,6 +40,17 @@ public class PlayerMovementScript : MonoBehaviour
         {
             print("space key was pressed");
             onScoreChange?.Raise(this, 50f);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            print("Q key was pressed");
+            waveCleared?.Raise(this, 1f);
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            addExperience?.Raise(this, 20f);
         }
 
         if (playerCombat.GetAttackingState())

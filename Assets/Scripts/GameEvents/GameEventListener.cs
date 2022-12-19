@@ -17,11 +17,11 @@ public class GameEventListener : MonoBehaviour
     public CustomUnityEvent response;
 
     private void OnEnable() {
-        Event.RegisterListener(this);
+        Event?.RegisterListener(this);
     }
 
     private void OnDisable() {
-        Event.UnregisterListener(this);
+        Event?.UnregisterListener(this);
     }
 
     public void OnEventRaised(Component sender, object data) {
