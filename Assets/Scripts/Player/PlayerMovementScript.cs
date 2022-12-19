@@ -9,7 +9,6 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] public float speed;
     [SerializeField] public float rotationSpeed;
     private Animator animator;
-    private SceneValues SceneValues;
     private Rigidbody body;
     private PlayerCombat playerCombat;
 
@@ -31,13 +30,6 @@ public class PlayerMovementScript : MonoBehaviour
         body = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         playerCombat = GetComponent<PlayerCombat>();
-        GameObject sceneValues = GameObject.Find("SceneValues");
-        if(sceneValues != null) {
-            SceneValues = sceneValues.GetComponent<SceneValues>();
-            if(SceneValues != null) {
-                Debug.Log(SceneValues.HasGameFinished);
-            }
-        }
 
         playerSkills = new PlayerSkills();
     }
@@ -122,11 +114,6 @@ public class PlayerMovementScript : MonoBehaviour
         else
         {
             animator.SetBool("Walking", false);
-        }
-
-        if(body.position.y < -20 && SceneValues != null) {
-            SceneValues.HasGameFinished = true;
-            SceneManager.LoadScene("MartinMenuScene");
         }
     }
 }
