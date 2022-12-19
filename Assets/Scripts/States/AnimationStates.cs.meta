@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Enemies/ABaseStatsScript.cs.meta
+guid: 9f57b24fce1868a4cbb8ee23b7dbf1f9
+========
 guid: 49ac5130e132f4761a6bd03f5098f698
+>>>>>>>> dev:Assets/Scripts/States/AnimationStates.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
