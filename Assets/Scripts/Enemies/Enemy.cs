@@ -51,16 +51,22 @@ public class Enemy : MonoBehaviour
             SetAnimationState(AnimationStates.Run, true);
             state = EnemyStates.Running;
         }
+        else if (state == EnemyStates.Attacking)
+            return;
+        
         targetPosition = player.transform.position;
 
         if (Vector3.Distance(transform.position, targetPosition) < attackRange)
         {
             // Attack player
             state = EnemyStates.Attacking;
-            SetAnimationState(AnimationStates.Attack, true);
+            StartCoroutine(Attack());
         }
-        else 
+        else
         {
+            if (state == EnemyStates.Attacking)
+                return;
+            
             // Run to player
             state = EnemyStates.Running;
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
@@ -68,5 +74,26 @@ public class Enemy : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
         }
+    }
+
+    private IEnumerator Attack()
+    {
+        // Update animation states
+        SetAnimationState(AnimationStates.Run, false);
+        SetAnimationState(AnimationStates.Attack, true);
+        
+        yield return new WaitForSeconds(0.7f);
+
+        Collider[] collidedObjects = Physics.OverlapSphere(transform.position, attackRange);
+        foreach (Collider collidedObject in collidedObjects)
+        {
+            if (collidedObject.CompareTag("Player"))
+            {
+                Debug.Log("Player hit");
+            }
+        }
+
+        yield return new WaitForSeconds(0.3f);
+        state = EnemyStates.Idle;
     }
 }

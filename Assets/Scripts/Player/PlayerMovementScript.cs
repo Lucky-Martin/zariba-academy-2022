@@ -23,7 +23,6 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"Attacking {playerCombat.GetAttackingState()}");
         if (playerCombat.GetAttackingState())
         {
             animator.SetBool("Walking", false);

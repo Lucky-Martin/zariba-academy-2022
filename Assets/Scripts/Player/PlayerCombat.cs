@@ -28,10 +28,6 @@ public class PlayerCombat : MonoBehaviour
         return attacking;
     }
 
-    public void UpdateAttackingState(bool state)
-    {
-        attacking = state;
-    }
     IEnumerator Hit()
     {
 
