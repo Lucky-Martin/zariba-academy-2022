@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] public int range;
+    [SerializeField] public float damage;
 
     private bool attacking;
     private Animator animator;
@@ -41,7 +42,12 @@ public class PlayerCombat : MonoBehaviour
         {
             if (collidedObject.CompareTag("Enemy"))
             {
-                Destroy(collidedObject.gameObject);
+                EnemyHealth enemyHealth = collidedObject.gameObject.GetComponent<EnemyHealth>();
+                enemyHealth.TakeDamage(damage);
+                if (enemyHealth.Health < 0)
+                {
+                    Destroy(enemyHealth);
+                }
             }
         }
 

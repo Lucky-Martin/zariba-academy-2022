@@ -4,5 +4,8 @@ using UnityEngine;
 
 public enum ResourceTypes 
 {
-    Wood
+    Wood,
+    Sunflower,
+    Ore,
+    Default
 }

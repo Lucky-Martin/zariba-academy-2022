@@ -7,5 +7,7 @@ public enum AnimationStates
     Walk,
     Search,
     Run,
-    Attack
+    Attack,
+    CarryWood,
+    CarryAttack
 }
