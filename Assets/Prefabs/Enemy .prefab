@@ -1425,7 +1425,7 @@ MonoBehaviour:
   healthBarUI: {fileID: 875767946}
   slider: {fileID: 651208905}
   MaxHealth: 100
-  Health: 90
+  Health: 100
 --- !u!1 &3605773338463074741
 GameObject:
   m_ObjectHideFlags: 0
