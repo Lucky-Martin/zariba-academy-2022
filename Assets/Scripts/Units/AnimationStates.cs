@@ -15,5 +15,7 @@ public enum AnimationStates
     Cast,
     TakeDamage,
     Death,
-    CastLoad
+    CastLoad,
+    CarryWood,
+    CarryAttack
 }

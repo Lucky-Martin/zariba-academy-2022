@@ -10,6 +10,9 @@ public class BaseUnit : MonoBehaviour
     [SerializeField] protected int SightRange;
     [SerializeField] protected int AttackRange;
     [SerializeField] protected int MaxHP;
+    [SerializeField] protected int Strength;
+    [SerializeField] protected int CanCarry; // once the unit cuts down a tree, they can't carry the whole tree
+    // so aome of the tree should be left, the trees toughness will be left at 0 and maybe we can change the prefab to a log or something
 
     protected Animator animatorController;
     // Start is called before the first frame update
@@ -36,6 +39,11 @@ public class BaseUnit : MonoBehaviour
         return SightRange;
     }
 
+    public int GetStrength()
+    {
+        return Strength;
+    }
+
     public void startSearching()
     {
 
@@ -55,6 +63,12 @@ public class BaseUnit : MonoBehaviour
             break;
             case AnimationStates.Search:
                 animatorController.SetBool("IsSearching", value);
+            break;
+            case AnimationStates.CarryWood:
+                animatorController.SetBool("IsCarrying", value);
+            break;
+            case AnimationStates.CarryAttack:
+                animatorController.SetBool("CarryAttack", value);
             break;
         }
     }

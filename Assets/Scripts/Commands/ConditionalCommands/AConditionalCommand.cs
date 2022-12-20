@@ -8,13 +8,15 @@ public abstract class AConditionalCommand : Command
     protected Command? FailureCommand;
     protected bool HasFinished = false;
     protected decimal RemainingTime = 0;
+    protected ResourceTypes typeWanted;
     
-    public AConditionalCommand(string name): base(name)
+    public AConditionalCommand(string name, ResourceTypes type): base(name)
     {
         RemainingTime = TimeBeforeFinish();
+        typeWanted = type;
     }
 
-    public abstract bool IsConditionTruthful(BaseUnit unit);
+    public abstract bool IsConditionTruthful(BaseUnit unit, ResourceTypes wantedType);
     public abstract decimal TimeBeforeFinish();
 
     public override void Execute(BaseUnit unit)
@@ -27,13 +29,15 @@ public abstract class AConditionalCommand : Command
             HasFinished = true;
             RemainingTime = TimeBeforeFinish();
         }
-        Debug.Log("Command \""+Name+"\" - Game Object" + unit);
+        //Debug.Log("Command \""+Name+"\" - Game Object" + unit);
     }
 
     public override Command? GetNextCommand(BaseUnit unit)
     {
-        Debug.Log("Is Condition Truthful" + IsConditionTruthful(unit));
-        return IsConditionTruthful(unit) ? SuccessCommand : FailureCommand;
+        // do we want this somewhat heavy command going on twice
+        // maybe uncomment later for debugging purposes 
+        // Debug.Log("Is Condition Truthful" + IsConditionTruthful(unit, typeWanted));
+        return IsConditionTruthful(unit, typeWanted) ? SuccessCommand : FailureCommand;
     }
 
     public void SetSuccessCommand(Command newCommand) 
