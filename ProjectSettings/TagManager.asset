@@ -3,11 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Resource
-  - Wood
-  - Canvas
-  - Enemy
+  tags: []
   layers:
   - Default
   - TransparentFX
