@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] public int HP;
     [SerializeField] public int speed;
     [SerializeField] public int rotationSpeed;
-    [SerializeField] public int sightRange;
     [SerializeField] public float attackRange;
-
+    [SerializeField] public int damage;
+    
     private Animator animator;
     private Vector3 targetPosition;
     private GameObject player;
@@ -89,7 +88,8 @@ public class Enemy : MonoBehaviour
         {
             if (collidedObject.CompareTag("Player"))
             {
-                Debug.Log("Player hit");
+                PlayerHealth playerHealth = collidedObject.gameObject.GetComponent<PlayerHealth>();
+                playerHealth.TakeDamage(damage);
             }
         }
 
