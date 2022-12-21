@@ -33,8 +33,6 @@ public class CommandableUnit : BaseUnit, IWorkerScript
     }
 
     public void RunCommands() {
-
-        Debug.Log("Run Commands starting...");
         ////If command execution should be stopped
         //if(!ShouldRunCommands) {
         //    return;
@@ -47,7 +45,7 @@ public class CommandableUnit : BaseUnit, IWorkerScript
 
         // If there is no current command and we should repeat commands
         if(CurrentCommand == null) {
-            Debug.Log("Current Command is null");
+            //Debug.Log("Current Command is null");
             // CurrentCommand = StartCommand;
             if(ShouldRepeatCommands) {
                 CurrentCommand = StartCommand;
@@ -57,8 +55,6 @@ public class CommandableUnit : BaseUnit, IWorkerScript
             //}
             return;
         }
-
-        Debug.Log("Just before executing...");
         CurrentCommand.Execute(this);
         if(CurrentCommand.IsFinished(this)) {
             Debug.Log("Previous command was - " + CurrentCommand.Name);
@@ -141,7 +137,6 @@ public class CommandableUnit : BaseUnit, IWorkerScript
         // we have everything selected for a new resource collection command
         if (commandName == "Collect" && resourceType != null && directionVector != null)
         {
-            Debug.Log("Entering into Collect Command Finalization");
             Debug.Log("Wanted resource is " + resourceType);
             Command MoveCommandInDirection = new MoveCommand(Speed, directionVector ?? new Vector3(0, 0, 0));
             AConditionalCommand DoesSeeCommand = new SeeConditionalCommand(resourceType ?? ResourceTypes.Default);

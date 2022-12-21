@@ -21,11 +21,11 @@ public abstract class AConditionalCommand : Command
 
     public override void Execute(BaseUnit unit)
     {
-        if(RemainingTime > 0) {
-            unit.setAnimationState(AnimationStates.Search, true);
+        if(RemainingTime > 0) { //leaving this time at 0 so it doesn't attack for looking around
+            unit.setAnimationState(AnimationStates.Attacking, true);
             RemainingTime -= (decimal)Time.deltaTime;
         } else {
-            unit.setAnimationState(AnimationStates.Search, false);
+            unit.setAnimationState(AnimationStates.Attacking, false);
             HasFinished = true;
             RemainingTime = TimeBeforeFinish();
         }

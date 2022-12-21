@@ -8,10 +8,18 @@ public class ExtractResourceCommand : Command
     protected int workerStrength;
     protected decimal remainingTime = 0;
     protected bool hasFinished = false;
+    protected bool carryingWood;
 
     public ExtractResourceCommand(Resource resource, BaseUnit unit) : base("ResourceExtractionCommand")
     {
+        carryingWood = false;
         resourceToughness = resource.ResourceToughness;
+        if (resource.type == ResourceTypes.Wood)
+        {
+            carryingWood = true;
+            Debug.Log("Carrying wood is true");
+        }
+
         workerStrength = unit.GetStrength();
         if (workerStrength != 0)
         {
@@ -23,17 +31,16 @@ public class ExtractResourceCommand : Command
     {
         if (remainingTime > 0)
         {
-            //Why is the attack animation called search XD
-            unit.setAnimationState(AnimationStates.CarryAttack, true);
+            ExtractCmdSettingAnimationStates(unit, true);
             remainingTime -= (decimal)Time.deltaTime;
-            //it's hitting just once and not more cause the animation is not repeating?
-            Debug.Log("Remaining time : " + remainingTime);
+            //Debug.Log("Remaining time : " + remainingTime);
         }
         else
         {
-            unit.setAnimationState(AnimationStates.CarryAttack, false);
+            ExtractCmdSettingAnimationStates(unit, false);
             Debug.Log("Resource Extraction Complete!");
             hasFinished = true;
+            carryingWood = false;
         }
     }
 
@@ -45,5 +52,20 @@ public class ExtractResourceCommand : Command
             return true;
         }
         return false;
+    }
+
+    protected void ExtractCmdSettingAnimationStates(BaseUnit unit, bool offOrOn)
+    {
+        if (carryingWood)
+        {
+            unit.setAnimationState(AnimationStates.CarryWoodAttack, offOrOn);
+            //Debug.Log("Setting animation to CarryWoodAttack or back - " + offOrOn);
+        }
+
+        else
+        {
+            unit.setAnimationState(AnimationStates.CarryBagAttack, offOrOn);
+            //Debug.Log("Setting animation to CarryBagAttack or back - " + offOrOn);
+        }
     }
 }
