@@ -26,32 +26,32 @@ public class PlayerSkills : MonoBehaviour
         
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if(playerSkills.IsSkillUnlocked(SkillType.Fireball)) {
-                playerSkills.GetSkill(SkillType.Fireball).castSkill(transform.gameObject);
-            } else {
-                Debug.Log("Fireball Skill not unlocked");
-            }
+            castIfAble(SkillType.Fireball);
         }
 
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if(playerSkills.IsSkillUnlocked(SkillType.Thunderclap)) {
-                playerSkills.GetSkill(SkillType.Thunderclap).castSkill(transform.gameObject);
-            } else {
-                Debug.Log("Thunderclap Skill not unlocked");
-            }
+            castIfAble(SkillType.Thunderclap);
         }
 
         if(Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if(playerSkills.IsSkillUnlocked(SkillType.Blink)) {
-                playerSkills.GetSkill(SkillType.Blink).castSkill(transform.gameObject);
-            } else {
-                Debug.Log("Blink Skill not unlocked");
-            }
-        }        
+            castIfAble(SkillType.Blink);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha4)) {
+            castIfAble(SkillType.RaiseDead);
+        }
     }
 
+
+    public void castIfAble(SkillType skillType) {
+        if(playerSkills.IsSkillUnlocked(skillType)) {
+            playerSkills.GetSkill(skillType).castSkill(transform.gameObject);
+        } else {
+            Debug.Log("Skill not unlocked");
+        }
+    }
     
     public void HandleSkillLevelUp(Component sender, object data)
     {

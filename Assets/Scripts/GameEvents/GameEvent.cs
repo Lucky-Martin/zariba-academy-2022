@@ -22,7 +22,6 @@ public class GameEvent : ScriptableObject
 
     public void Raise(Component sender, object data)
     {
-        Debug.Log("Raise");
         for(int i = 0 ; i < Listeners.Count; i++) {
             Listeners[i].OnEventRaised(sender, data);
         }

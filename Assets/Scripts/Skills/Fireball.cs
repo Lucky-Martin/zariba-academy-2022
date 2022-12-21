@@ -25,6 +25,41 @@ public class Fireball : ASkill
     public float afterExplosionEffectTime = 10;
 
 
+    [Range(1,100)]
+    public float baseMainDamage = 10;
+
+    [Range(1,100)]
+    public float perLevelMainDamageMultiplier = 10;
+
+    [Range(1,100)]
+    public float baseSideDamage = 10;
+    [Range(1,100)]
+    public float perLevelSideDamageMultiplier = 10;
+
+    [Range(1,100)]
+    public float baseExplosionRange = 3;
+
+    [Range(1,100)]
+    public float perLevelRangeMultiplier = 10;
+
+
+    public float calculateSideDamage()
+    {
+        return baseSideDamage + currentLevel * perLevelSideDamageMultiplier;
+    }
+
+    public float calculateExplosionRange()
+    {
+        return baseExplosionRange + currentLevel * perLevelRangeMultiplier;
+    }
+
+    public float calculateMainDamage()
+    {
+        return baseMainDamage + currentLevel * perLevelMainDamageMultiplier;
+    }
+
+
+
     
     private GameObject effectsToSpawn;
     private float nextAvailableTime = 0f;
@@ -69,7 +104,6 @@ public class Fireball : ASkill
         }
         nextAvailableTime = Time.time + getCooldownTime();
 
-
         GameObject projectile = handleShootingEffects(caster);
 
         ProjectileSpeed speedScript = projectile.GetComponent<ProjectileSpeed>();
@@ -103,8 +137,40 @@ public class Fireball : ASkill
         return explosion;
     } 
 
-    protected void handleCollision(GameObject gameObject, Collision collision) {
+    protected void handleCollision(GameObject gameObject, Collision collision) 
+    {
+        float mainDamage = calculateMainDamage();
 
+        // Aplly main damage to collided element
+        EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+        if(enemyHealth) {
+            applyDamage(enemyHealth, mainDamage);
+        }
+
+        //Apply side damage to other things in range;
+        applyExplosionRangeDamage(gameObject.transform.position);
         handleExplossionEffects(gameObject, collision);
+    }
+
+    protected void applyExplosionRangeDamage(Vector3 explosionCenter)
+    {
+        Collider[] collidedObjects = Physics.OverlapSphere(
+            explosionCenter, 
+            calculateExplosionRange()
+        );
+
+        float sideDamage = calculateSideDamage();
+
+        foreach (Collider collidedObject in collidedObjects)
+        {
+            if(collidedObject.gameObject.GetComponent<EnemyHealth>()) {
+                applyDamage(collidedObject.gameObject.GetComponent<EnemyHealth>(), sideDamage);
+            }
+        }
+    }
+
+    protected void applyDamage(EnemyHealth enemy, float damage)
+    {
+        enemy.TakeDamage(damage);
     }
 }
