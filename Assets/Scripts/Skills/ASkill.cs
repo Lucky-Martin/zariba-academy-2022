@@ -7,13 +7,35 @@ public abstract class ASkill : MonoBehaviour
 
     protected int currentLevel = 0;
 
+    public List<SkillType> prerequisiteSkills = new List<SkillType>();
+
     public abstract string getSkillName();
     public abstract SkillType getSkillType();
     public abstract int getLevelUpSkillCost();
 
     public abstract string getToolTip();
-    public abstract string getIconImage();
     public abstract int getMaximumSkillLevel();
+
+    public void addPrerequisiteSkill(SkillType skill) {
+        if(!prerequisiteSkills.Contains(skill)) {
+            prerequisiteSkills.Add(skill);
+        }
+    }
+
+    public void fulfillPrerequisiteSkill(SkillType skill) {
+        if(prerequisiteSkills.Contains(skill)) {
+            prerequisiteSkills.Remove(skill);
+        }
+    }
+
+    public bool requiresSkill(SkillType skill) {
+        return prerequisiteSkills.Contains(skill);
+    }
+
+    public List<SkillType> getRequisiteSkills() {
+        return prerequisiteSkills;
+    }
+
     public int getCurrentSkillLevel()
     {
         return currentLevel;

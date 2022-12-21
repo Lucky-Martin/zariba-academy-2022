@@ -69,15 +69,23 @@ public class PlayerMovementScript : MonoBehaviour
 
         transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
 
+
+        RaycastHit hit;
+ 
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+ 
+        if(Physics.Raycast(ray, out hit))
+        {
+            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+        }
+
+
         if (movementDirection != Vector3.zero)
         {
             if (!animator.GetBool("Walking"))
             {
                 animator.SetBool("Walking", true);
             }
-
-            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
         else
         {

@@ -5,6 +5,11 @@ using UnityEngine;
 public class ThunderclapSkill : ASkill
 {
     public static int MAXIMUM_LEVEL = 2;
+
+    public void Start()
+    {
+
+    }
     public override string getSkillName() {
         return "Thunderclap";
     }
@@ -25,9 +30,5 @@ public class ThunderclapSkill : ASkill
 
     public override string getToolTip() {
         return "Strikes the earth around with Lightning";
-    }
-
-    public override string getIconImage() {
-        return "Foo";
     }
 }

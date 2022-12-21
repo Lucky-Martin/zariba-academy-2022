@@ -26,8 +26,4 @@ public class BlinkSkill : ASkill
     public override string getToolTip() {
         return "Moves a short distance";
     }
-
-    public override string getIconImage() {
-        return "Foo";
-    }
 }
