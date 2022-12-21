@@ -2,5 +2,6 @@ public enum SkillType {
     None,
     Blink,
     Fireball,
-    Thunderclap
+    Thunderclap,
+    RaiseDead
 }

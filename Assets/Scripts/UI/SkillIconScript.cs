@@ -44,6 +44,7 @@ public class SkillIconScript : MonoBehaviour
     {
         
         Color overlayColor = new Color(1f, 1f, 1f, 0.5f);
+
         if(skill.getCurrentSkillLevel() == skill.getMaximumSkillLevel()) {
             // Completed E5C424
             overlayColor = new Color(
@@ -66,7 +67,7 @@ public class SkillIconScript : MonoBehaviour
 
     public bool canLevelSkillUp()
     {
-        return skill.getLevelUpSkillCost() < userExperience && skill.getRequisiteSkills().Count == 0;
+        return skill.getLevelUpSkillCost() <= userExperience && skill.getRequisiteSkills().Count == 0;
     }
 
     public void HandleHoverIn() {
@@ -84,7 +85,7 @@ public class SkillIconScript : MonoBehaviour
 
         //Do you have enough experience
 
-
+        Debug.Log("Raising level up event");
         levelUpSkill?.Raise(this, skill);
     }
 
@@ -94,7 +95,7 @@ public class SkillIconScript : MonoBehaviour
     {
         if(data is ASkill) {
             ASkill leveledUpSkill = (ASkill) data;
-
+            Debug.Log(skill.getSkillName());
             if(skill == leveledUpSkill && 
                 skill.getCurrentSkillLevel() < skill.getMaximumSkillLevel() &&
                 canLevelSkillUp() ) {
