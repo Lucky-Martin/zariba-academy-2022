@@ -21,10 +21,28 @@ public class ThunderclapSkill : ASkill
     public float cooldownTime = 10f;
     private float nextAvailableTime = 0f;
 
-    public void Start()
-    {
+    [Range(1,100)]
+    public float baseDamage = 50;
 
+    [Range(0,100)]
+    public float perLevelDamageMultiplier = 0.5f;
+
+    [Range(0,100)]
+    public float range = 10;
+
+    [Range(0,100)]
+    public float perLevelRangeMultiplier = 0.5f;
+
+    public float calculateDamage()
+    {
+        return baseDamage + perLevelDamageMultiplier * currentLevel;
     }
+
+    public float calculateRange()
+    {
+        return range + perLevelRangeMultiplier * currentLevel;
+    }
+
     public override string getSkillName() {
         return "Thunderclap";
     }
@@ -61,7 +79,21 @@ public class ThunderclapSkill : ASkill
         }
         nextAvailableTime = Time.time + getCooldownTime();
 
+        Collider[] collidedObjects = Physics.OverlapSphere(
+            caster.transform.position, 
+            calculateRange()
+        );
 
+        float damage = calculateDamage();
+
+        Debug.Log(damage);
+
+        foreach (Collider collidedObject in collidedObjects)
+        {
+            if(collidedObject.gameObject.GetComponent<EnemyHealth>()) {
+                collidedObject.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+            }
+        }
         handleEffects(caster);
     }
 
