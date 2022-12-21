@@ -46,8 +46,7 @@ public class ExtractResourceCommand : Command
 
     public override bool IsFinished(BaseUnit unit)
     {
-        if (hasFinished)
-        {
+        if (hasFinished) {
             hasFinished = false;
             return true;
         }
@@ -60,10 +59,7 @@ public class ExtractResourceCommand : Command
         {
             unit.setAnimationState(AnimationStates.CarryWoodAttack, offOrOn);
             //Debug.Log("Setting animation to CarryWoodAttack or back - " + offOrOn);
-        }
-
-        else
-        {
+        } else {
             unit.setAnimationState(AnimationStates.CarryBagAttack, offOrOn);
             //Debug.Log("Setting animation to CarryBagAttack or back - " + offOrOn);
         }

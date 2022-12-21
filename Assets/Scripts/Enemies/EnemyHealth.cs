@@ -11,6 +11,9 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] public float MaxHealth;
     [SerializeField] public float Health;
 
+    [SerializeField] public GameEvent onDeath;
+
+
     private void Start()
     {
         UpdateHealthBar();
@@ -19,6 +22,10 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         Health -= damage;
+
+        if(Health <= 0) {
+            onDeath?.Raise(this, gameObject);
+        }
         UpdateHealthBar();
     }
 

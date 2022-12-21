@@ -36,19 +36,17 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown(KeyCode.J))
         {
-            print("space key was pressed");
             onScoreChange?.Raise(this, 50f);
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.K))
         {
-            print("Q key was pressed");
             waveCleared?.Raise(this, ++wave);
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.L))
         {
             addExperience?.Raise(this, 20f);
         }

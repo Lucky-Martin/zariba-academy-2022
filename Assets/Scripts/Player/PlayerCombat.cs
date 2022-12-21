@@ -47,11 +47,11 @@ public class PlayerCombat : MonoBehaviour
             {
                 EnemyHealth enemyHealth = collidedObject.gameObject.GetComponent<EnemyHealth>();
                 enemyHealth.TakeDamage(damage);
-                if (enemyHealth.Health < 0)
-                {
-                    Destroy(collidedObject.gameObject);
-                    waveSpawner.CheckWaveEnded();
-                }
+                // if (enemyHealth.Health < 0)
+                // {
+                //     Destroy(collidedObject.gameObject);
+                //     waveSpawner.CheckWaveEnded();
+                // }
             }
         }
 

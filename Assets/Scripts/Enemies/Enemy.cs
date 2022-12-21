@@ -8,6 +8,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int rotationSpeed;
     [SerializeField] public float attackRange;
     [SerializeField] public int damage;
+
+    [SerializeField] [Range(10,20)] public float experiencePoints = 10;
+    [SerializeField] [Range(50,100)]public float scorePoints = 50;
+    [SerializeField] [Range(1,10)] public float deathTimer = 10;
+
+    public GameEvent awardSkillPoints;
+    public GameEvent awardExperience;
     
     private Animator animator;
     private Vector3 targetPosition;
@@ -40,6 +47,9 @@ public class Enemy : MonoBehaviour
             case AnimationStates.Attack:
                 animator.SetTrigger("Attack");
                 break;
+            case AnimationStates.Death:
+                animator.SetBool("Dead", value);
+            break;
         }
     }
 
@@ -95,5 +105,19 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
         state = EnemyStates.Idle;
+    }
+
+    public void HandleDeathEvent(Component sender, object data)
+    {
+        if(data is GameObject && (GameObject) data == gameObject)
+        {
+            Debug.Log("Score");
+            Debug.Log(scorePoints);
+            awardSkillPoints?.Raise(this, scorePoints);
+            awardExperience?.Raise(this, experiencePoints);
+            SetAnimationState(AnimationStates.Death, true);
+            Destroy(this, deathTimer);
+
+        }
     }
 }

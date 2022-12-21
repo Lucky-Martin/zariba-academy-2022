@@ -12,5 +12,6 @@ public enum AnimationStates
     CarryBag,
     CarryBagAttack,
     Attacking, // for the zombie attacks not to mess with the player attacks idk
-    Search // there was a search in the enemy so not to touch it
+    Search, // there was a search in the enemy so not to touch it
+    Death
 }

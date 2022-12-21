@@ -67,7 +67,7 @@ public class RaiseDead : ASkill
         if(commandableUndeadPrefab) {
             Instantiate(
                 commandableUndeadPrefab,
-                caster.transform.forward,
+                caster.transform.position + caster.transform.forward,
                 Quaternion.Inverse(caster.transform.rotation)
             );
         }

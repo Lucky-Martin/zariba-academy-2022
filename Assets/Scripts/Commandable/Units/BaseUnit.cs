@@ -62,6 +62,9 @@ public class BaseUnit : MonoBehaviour
 
     public void setAnimationState(AnimationStates state, bool value)
     {
+        Debug.Log("Setting animation state");
+        Debug.Log(state);
+        Debug.Log(value);
         switch(state) {
             case AnimationStates.Walk:
                 animatorController.SetBool("Walking", value);

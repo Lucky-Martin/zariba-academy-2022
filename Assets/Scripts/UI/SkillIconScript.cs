@@ -95,6 +95,7 @@ public class SkillIconScript : MonoBehaviour
     {
         if(data is ASkill) {
             ASkill leveledUpSkill = (ASkill) data;
+            Debug.Log("Skill name");
             Debug.Log(skill.getSkillName());
             if(skill == leveledUpSkill && 
                 skill.getCurrentSkillLevel() < skill.getMaximumSkillLevel() &&
@@ -108,7 +109,6 @@ public class SkillIconScript : MonoBehaviour
                 UpdateOverlay();
 
             } else {
-                Debug.Log("Does Require");
                 Debug.Log(skill.requiresSkill(leveledUpSkill.getSkillType()));
                 if(skill.requiresSkill(leveledUpSkill.getSkillType())) {
                     skill.fulfillPrerequisiteSkill(leveledUpSkill.getSkillType());

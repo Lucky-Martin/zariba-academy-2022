@@ -1333,6 +1333,7 @@ GameObject:
   - component: {fileID: 3605773338462972920}
   - component: {fileID: 3605773338462972924}
   - component: {fileID: 3605773338445203219}
+  - component: {fileID: -6093366382996107405}
   m_Layer: 0
   m_Name: 'Enemy '
   m_TagString: Enemy
@@ -1410,6 +1411,11 @@ MonoBehaviour:
   rotationSpeed: 5
   attackRange: 1
   damage: 20
+  experiencePoints: 10
+  scorePoints: 50
+  deathTimer: 10
+  awardSkillPoints: {fileID: 11400000, guid: 8895d9b7d632fb742982249794bb0594, type: 2}
+  awardExperience: {fileID: 11400000, guid: 3446d8b5a2e5b684fadf0d58cdeb9361, type: 2}
 --- !u!114 &3605773338445203219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1426,6 +1432,35 @@ MonoBehaviour:
   slider: {fileID: 651208905}
   MaxHealth: 100
   Health: 100
+  onDeath: {fileID: 11400000, guid: 59568736fcbeabf449ffcd64287a6c49, type: 2}
+--- !u!114 &-6093366382996107405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3605773338463073257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d26bd9a2c5804184f78b2ac458343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 59568736fcbeabf449ffcd64287a6c49, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3605773338462972924}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: HandleDeathEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3605773338463074741
 GameObject:
   m_ObjectHideFlags: 0
