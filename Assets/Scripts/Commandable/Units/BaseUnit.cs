@@ -66,15 +66,21 @@ public class BaseUnit : MonoBehaviour
             case AnimationStates.Walk:
                 animatorController.SetBool("Walking", value);
             break;
-            case AnimationStates.Search:
-                animatorController.SetBool("IsSearching", value);
+            case AnimationStates.Attacking:
+                animatorController.SetBool("Attacking", value);
             break;
             case AnimationStates.CarryWood:
                 animatorController.SetBool("IsCarrying", value);
             break;
-            case AnimationStates.CarryAttack:
-                animatorController.SetBool("CarryAttack", value);
+            case AnimationStates.CarryWoodAttack:
+                animatorController.SetBool("CarryWoodAttack", value);
             break;
+            case AnimationStates.CarryBag:
+                animatorController.SetBool("CarryBag", value);
+                break;
+            case AnimationStates.CarryBagAttack:
+                animatorController.SetBool("CarryBagAttack", value);
+                break;
             case AnimationStates.Run:
                 animatorController.SetBool("Running", value);
             break;

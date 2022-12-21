@@ -5,7 +5,7 @@ using UnityEngine;
 public class SeeConditionalCommand : AConditionalCommand
 {
     //Time as float
-    protected decimal LookAroundTime = 2;
+    protected decimal LookAroundTime = 0;
 
     public SeeConditionalCommand(ResourceTypes typeWanted) : base("See command", typeWanted) {}
 
@@ -33,15 +33,21 @@ public class SeeConditionalCommand : AConditionalCommand
                 int highestCapacityIndex = 0;
                 for ( int i = 0; i < barns.Length; i++)
                 {
-                    if (barns[i].GetComponent<Barn>().resourceCapacityLeft > highestCapacity)
+                    if (barns[i].gameObject.GetComponent<Barn>().resourceCapacityLeft > highestCapacity)
                     {
                         highestCapacity = barns[i].GetComponent<Barn>().resourceCapacityLeft;
                         highestCapacityIndex = i;
                     }
-                }  
-                
+                }
 
-                MoveCommand goToPlayer = new MoveCommand(unit.GetSpeed(), barns[highestCapacityIndex].transform.position, true);
+                bool carryingWood = false;
+                bool carryingNotWood = false;
+                if (wantedType == ResourceTypes.Wood)
+                    carryingWood = true;
+                else
+                    carryingNotWood = true;
+
+                MoveCommand goToPlayer = new MoveCommand(unit.GetSpeed(), barns[highestCapacityIndex].transform.position, carryingWood, carryingNotWood);
                 goToPlayer.SetEndPosition(barns[highestCapacityIndex].transform.position);
                 cutTree.SetNextCommand(goToPlayer);
 

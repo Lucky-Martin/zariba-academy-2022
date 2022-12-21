@@ -5,9 +5,12 @@ using UnityEngine;
 public enum AnimationStates
 {
     Walk,
-    Search,
     Run,
     Attack,
     CarryWood,
-    CarryAttack
+    CarryWoodAttack,
+    CarryBag,
+    CarryBagAttack,
+    Attacking, // for the zombie attacks not to mess with the player attacks idk
+    Search // there was a search in the enemy so not to touch it
 }

@@ -9,13 +9,15 @@ public class MoveCommand : Command
     protected Vector3? endPosition;
     protected int Step;
     protected Vector3 Direction;
-    protected bool carrying;
+    protected bool carryingWood;
+    protected bool carryingNotWood;
 
-    public MoveCommand(int step, Vector3 direction, bool carrying = false) : base("MovementCommand")
+    public MoveCommand(int step, Vector3 direction, bool carryingWood = false, bool carryingNotWood = false) : base("MovementCommand")
     {
         Step = step;
         Direction = direction;
-        this.carrying = carrying;
+        this.carryingWood = carryingWood;
+        this.carryingNotWood = carryingNotWood;
     }
 
     public override void Execute(BaseUnit unit)
@@ -28,19 +30,12 @@ public class MoveCommand : Command
 
         //startPosition = unit.transform.position;
 
-        Debug.Log("In Move Command");
-
         if(endPosition == null)
         {
             endPosition = unit.transform.position + Step * (Direction);
         }
 
-        if (carrying)
-        {
-            unit.setAnimationState(AnimationStates.CarryWood, true);
-        }
-        else 
-            unit.setAnimationState(AnimationStates.Walk, true);
+        MoveCmdSettingAnimationStates(unit, true);
 
         unit.transform.position = Vector3.MoveTowards(unit.transform.position, endPosition ?? Vector3.one, unit.GetSpeed() * Time.deltaTime);
 
@@ -67,16 +62,34 @@ public class MoveCommand : Command
             return false;
         }
 
-        if (carrying)
-        {
-            unit.setAnimationState(AnimationStates.CarryWood, false);
-        }
-        else unit.setAnimationState(AnimationStates.Walk, false);
+        MoveCmdSettingAnimationStates(unit, false);
 
         //startPosition = null;
         endPosition = null;
-        carrying = false;
+        carryingWood = false;
+        carryingNotWood = false;
 
         return true;
+    }
+
+    protected void MoveCmdSettingAnimationStates(BaseUnit unit, bool offOrOn)
+    {
+        if (carryingWood)
+        {
+            unit.setAnimationState(AnimationStates.CarryWood, offOrOn);
+            //Debug.Log("Setting animation to CarryWood walking or back - " + offOrOn);
+        }
+
+        else if (carryingNotWood)
+        {
+            unit.setAnimationState(AnimationStates.CarryBag, offOrOn);
+            //Debug.Log("Setting animation to CarryBag walking or back - " + offOrOn);
+        }
+        else
+        {
+            unit.setAnimationState(AnimationStates.Walk, offOrOn);
+            //Debug.Log("Setting animation as normal walking or back - " + offOrOn);
+        }
+
     }
 }
