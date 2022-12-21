@@ -9,16 +9,19 @@ public class PlayerCombat : MonoBehaviour
 
     private bool attacking;
     private Animator animator;
+    private WaveSpawner waveSpawner;
+    
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        waveSpawner = FindObjectOfType<WaveSpawner>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !attacking)
         {
             StartCoroutine(Hit());
         }
@@ -46,7 +49,8 @@ public class PlayerCombat : MonoBehaviour
                 enemyHealth.TakeDamage(damage);
                 if (enemyHealth.Health < 0)
                 {
-                    Destroy(enemyHealth);
+                    Destroy(collidedObject.gameObject);
+                    waveSpawner.CheckWaveEnded();
                 }
             }
         }
