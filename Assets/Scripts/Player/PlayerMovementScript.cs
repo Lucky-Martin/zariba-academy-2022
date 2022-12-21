@@ -11,6 +11,7 @@ public class PlayerMovementScript : MonoBehaviour
     private Animator animator;
     private Rigidbody body;
     private PlayerCombat playerCombat;
+    private GameObject playerGameObject;
 
     public float wave = 0f;
 
@@ -18,9 +19,7 @@ public class PlayerMovementScript : MonoBehaviour
     public GameEvent onScoreChange;
     public GameEvent waveCleared;
     public GameEvent addExperience;
-    public GameEvent openSkillMenu;
 
-    protected PlayerSkills playerSkills;
 
     // debuging purposes
 
@@ -30,8 +29,8 @@ public class PlayerMovementScript : MonoBehaviour
         body = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         playerCombat = GetComponent<PlayerCombat>();
+        playerGameObject = GetComponent<GameObject>();
 
-        playerSkills = new PlayerSkills();
     }
 
     // Update is called once per frame
@@ -54,37 +53,6 @@ public class PlayerMovementScript : MonoBehaviour
             addExperience?.Raise(this, 20f);
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            if(playerSkills.IsSkillUnlocked(SkillType.Bolt)) {
-                Debug.Log("Bolt Skill!");
-            } else {
-                Debug.Log("Bolt Skill not unlocked");
-            }
-        }
-
-        if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if(playerSkills.IsSkillUnlocked(SkillType.Blink)) {
-                Debug.Log("Blink Skill!");
-            } else {
-                Debug.Log("Blink Skill not unlocked");
-            }
-        }
-        
-        if(Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            if(playerSkills.IsSkillUnlocked(SkillType.Thunderclap)) {
-                Debug.Log("Thunderclap Skill!");
-            } else {
-                Debug.Log("Thunderclap Skill not unlocked");
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            openSkillMenu?.Raise(this, null);
-        }
 
         if (playerCombat.GetAttackingState())
         {
@@ -101,19 +69,28 @@ public class PlayerMovementScript : MonoBehaviour
 
         transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
 
+
+        RaycastHit hit;
+ 
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+ 
+        if(Physics.Raycast(ray, out hit))
+        {
+            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+        }
+
+
         if (movementDirection != Vector3.zero)
         {
             if (!animator.GetBool("Walking"))
             {
                 animator.SetBool("Walking", true);
             }
-
-            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
         else
         {
             animator.SetBool("Walking", false);
         }
     }
+
 }
