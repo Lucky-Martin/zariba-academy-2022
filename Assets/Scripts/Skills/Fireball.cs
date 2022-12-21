@@ -8,12 +8,26 @@ public class Fireball : ASkill
     public GameObject afterExplosionEffect;
     public Vector3 explosionScaleChange = new Vector3(0.2f, 0.2f, 0.2f);
 
-    [Range(1,100)]
-    public float BaseFireRate = 20f;
-    private float lastCalledTime = 0f;
-    private GameObject effectsToSpawn;
 
-    public static int MAXIMUM_LEVEL = 5;
+    [Range(1,100)]
+    public int maximumLevel = 5;
+    [Range(1,100)]
+    public int perLevelUpCost = 10;
+
+    [Range(0,100)]
+    public float perLevelCooldownReduction = 1;
+
+    [Range(1,100)]
+    public float cooldownTime = 10f;
+
+
+    [Range(1,20)]
+    public float afterExplosionEffectTime = 10;
+
+
+    
+    private GameObject effectsToSpawn;
+    private float nextAvailableTime = 0f;
 
 
     public void Start() {
@@ -35,34 +49,36 @@ public class Fireball : ASkill
     
     public override int getMaximumSkillLevel()
     {
-        return MAXIMUM_LEVEL;
+        return maximumLevel;
     }
 
     public override string getToolTip() {
         return "Fires a fireball at where the caster is pointing";
     }
 
-    protected float getFireRate()
+    
+    public float getCooldownTime()
     {
-        return BaseFireRate * (currentLevel);
+        return cooldownTime - (currentLevel * perLevelCooldownReduction);
     }
+
     public override void castSkill(GameObject caster)
     {
-        if(Time.time < lastCalledTime) {
-            Debug.Log("Still on cooldown");
+        if(Time.time < nextAvailableTime) {
+            return;
         }
+        nextAvailableTime = Time.time + getCooldownTime();
 
-        lastCalledTime = Time.time + 1 / getFireRate();
 
-        // Caster game object
-        base.castSkill(caster);
+        GameObject projectile = handleShootingEffects(caster);
 
-        GameObject projectile;
+        ProjectileSpeed speedScript = projectile.GetComponent<ProjectileSpeed>();
+        speedScript.AddCollisionHandler(handleCollision);
+    }
 
-        Debug.Log(caster.transform.rotation);
-        Debug.Log(caster.transform.position + (caster.transform.forward * 1.25f));
-
-        projectile = Instantiate(
+    protected GameObject handleShootingEffects(GameObject caster)
+    {
+        return Instantiate(
             effectsToSpawn, 
             (
                 caster.transform.position + //From caster
@@ -70,13 +86,10 @@ public class Fireball : ASkill
                 (caster.transform.up * 0.50f) //Just above model, so that it doesn't collid with plane
             ), 
             caster.transform.rotation);
-
-        ProjectileSpeed speedScript = projectile.GetComponent<ProjectileSpeed>();
-        speedScript.AddCollisionHandler(handleCollision);
     }
 
-    protected void handleCollision(GameObject gameObject, Collision collision) {
-
+    protected GameObject handleExplossionEffects(GameObject gameObject, Collision collision)
+    {
         GameObject explosion = Instantiate(
             afterExplosionEffect,
             gameObject.transform.position,
@@ -84,7 +97,14 @@ public class Fireball : ASkill
         );
 
         explosion.transform.localScale += currentLevel * explosionScaleChange;
-        Debug.Log(explosion.transform.localScale);
-        // Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAA");
+
+        Destroy(explosion, afterExplosionEffectTime);
+        
+        return explosion;
+    } 
+
+    protected void handleCollision(GameObject gameObject, Collision collision) {
+
+        handleExplossionEffects(gameObject, collision);
     }
 }

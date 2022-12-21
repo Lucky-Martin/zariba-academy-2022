@@ -35,21 +35,21 @@ public class PlayerSkills : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if(playerSkills.IsSkillUnlocked(SkillType.Blink)) {
-                playerSkills.GetSkill(SkillType.Blink).castSkill(transform.gameObject);
-            } else {
-                Debug.Log("Blink Skill not unlocked");
-            }
-        }
-        
-        if(Input.GetKeyDown(KeyCode.Alpha3))
-        {
             if(playerSkills.IsSkillUnlocked(SkillType.Thunderclap)) {
                 playerSkills.GetSkill(SkillType.Thunderclap).castSkill(transform.gameObject);
             } else {
                 Debug.Log("Thunderclap Skill not unlocked");
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if(playerSkills.IsSkillUnlocked(SkillType.Blink)) {
+                playerSkills.GetSkill(SkillType.Blink).castSkill(transform.gameObject);
+            } else {
+                Debug.Log("Blink Skill not unlocked");
+            }
+        }        
     }
 
     
