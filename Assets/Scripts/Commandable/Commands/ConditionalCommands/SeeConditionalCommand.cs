@@ -47,9 +47,18 @@ public class SeeConditionalCommand : AConditionalCommand
                 else
                     carryingNotWood = true;
 
-                MoveCommand goToPlayer = new MoveCommand(unit.GetSpeed(), barns[highestCapacityIndex].transform.position, carryingWood, carryingNotWood);
-                goToPlayer.SetEndPosition(barns[highestCapacityIndex].transform.position);
-                cutTree.SetNextCommand(goToPlayer);
+                MoveCommand goToBarn = new MoveCommand(unit.GetSpeed(), barns[highestCapacityIndex].transform.position, carryingWood, carryingNotWood);
+                goToBarn.SetEndPosition(barns[highestCapacityIndex].transform.position);
+                cutTree.SetNextCommand(goToBarn);
+
+                GameObject player = GameObject.FindWithTag("Player");
+                if (player != null)
+                {
+                    MoveCommand goToPlayer = new MoveCommand(unit.GetSpeed(), player.transform.position);
+                    goToPlayer.SetEndPosition(player.transform.position);
+                    goToBarn.SetNextCommand(goToPlayer);
+
+                }
 
                 SetSuccessCommand(goToResourceCommand);
                 return true;
