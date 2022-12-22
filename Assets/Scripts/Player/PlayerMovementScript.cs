@@ -20,6 +20,8 @@ public class PlayerMovementScript : MonoBehaviour
     public GameEvent waveCleared;
     public GameEvent addExperience;
 
+    public bool isPlayerDead = false;
+
 
     // debuging purposes
 
@@ -36,6 +38,9 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isPlayerDead) {
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.J))
         {
             onScoreChange?.Raise(this, 10000f);
@@ -88,6 +93,14 @@ public class PlayerMovementScript : MonoBehaviour
         else
         {
             animator.SetBool("Walking", false);
+        }
+    }
+
+    public void HandlePlayerDeath(Component sender, object data)
+    {
+        if(data is bool) {
+            isPlayerDead = (bool) data;
+            animator.SetBool("Dead", true);
         }
     }
 

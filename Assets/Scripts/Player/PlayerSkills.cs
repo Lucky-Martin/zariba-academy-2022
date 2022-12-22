@@ -9,6 +9,9 @@ public class PlayerSkills : MonoBehaviour
     protected SkillsContainer playerSkills;
     public GameEvent openSkillMenu;
     private GameObject playerGameObject;
+
+    public float finalScore = 0; 
+
     void Start()
     {
         
@@ -67,6 +70,13 @@ public class PlayerSkills : MonoBehaviour
                 // Unlock it
                 playerSkills.UnlockSkill(skillType, skill);
             }
+        }
+    }
+
+    public void HandleScoreChange(Component sender, object data)
+    {
+        if(data is float) {
+            finalScore += (float) data;
         }
     }
 }

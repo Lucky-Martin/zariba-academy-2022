@@ -1370,7 +1370,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3605773338463073257}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1.4894811, z: 1}
@@ -1409,11 +1409,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   rotationSpeed: 5
-  attackRange: 1
+  attackRange: 2
   damage: 20
   experiencePoints: 10
   scorePoints: 50
-  deathTimer: 10
+  deathTimer: 2
   awardSkillPoints: {fileID: 11400000, guid: 8895d9b7d632fb742982249794bb0594, type: 2}
   awardExperience: {fileID: 11400000, guid: 3446d8b5a2e5b684fadf0d58cdeb9361, type: 2}
 --- !u!114 &3605773338445203219

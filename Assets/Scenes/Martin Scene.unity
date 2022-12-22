@@ -7127,7 +7127,7 @@ BoxCollider:
   m_GameObject: {fileID: 1710944193}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -7160,6 +7160,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 751932591, guid: 9382af548be2f479a98981de4943addf, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605773338462972922, guid: 9382af548be2f479a98981de4943addf, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3605773338463073257, guid: 9382af548be2f479a98981de4943addf, type: 3}

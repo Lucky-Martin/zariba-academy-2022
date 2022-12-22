@@ -29,7 +29,9 @@ public class Enemy : MonoBehaviour
 
     public virtual void Update()
     {
-        RunToPlayer();
+        if(state != EnemyStates.Dead) {
+            RunToPlayer();
+        }
     }
 
     private void SetAnimationState(AnimationStates state, bool value)
@@ -116,8 +118,8 @@ public class Enemy : MonoBehaviour
             awardSkillPoints?.Raise(this, scorePoints);
             awardExperience?.Raise(this, experiencePoints);
             SetAnimationState(AnimationStates.Death, true);
-            Destroy(this, deathTimer);
-
+            state = EnemyStates.Dead;
+            Destroy(gameObject, deathTimer);
         }
     }
 }

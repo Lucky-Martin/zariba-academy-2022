@@ -11,11 +11,23 @@ public class WaveSpawner : MonoBehaviour
     private List<GameObject> spawnPoints = new List<GameObject>();
     private int waveIndex = -1;
     private Wave currentWave;
+    private List<GameObject> activeEnemies = new List<GameObject>();
+    public GameEvent onWaveEndEvent;
 
     public void LoadNextWave()
     {
         waveIndex += 1;
-        currentWave = waves[waveIndex];
+        if(waves.Length > waveIndex) {
+            currentWave = waves[waveIndex];
+        } else {
+            // Double the last wave
+            int waveDifference = waveIndex + 1 - waves.Length;
+            for(int i = 0; i < waveDifference; i++) {
+                Invoke("SpawnWave", i);
+            }
+            return;
+        }
+
         SpawnWave();
     }
 
@@ -48,6 +60,21 @@ public class WaveSpawner : MonoBehaviour
             {
                 var enemy = Instantiate(currentWave.enemyPrefab, spawnPoint.transform.position, Quaternion.identity);
                 enemy.transform.parent = enemyContainer.transform;
+                activeEnemies.Add(enemy);
+            }
+        }
+    }
+
+    public void HandleEnemyDeath(Component sender, object data)
+    {
+        if(data is GameObject && activeEnemies.Contains((GameObject) data)) {
+            GameObject passedGameObject = (GameObject) data;
+            activeEnemies.Remove(passedGameObject);
+
+            if(activeEnemies.Count == 0) {
+                
+                onWaveEndEvent?.Raise(this, (float) waveIndex + 1);
+                LoadNextWave();
             }
         }
     }

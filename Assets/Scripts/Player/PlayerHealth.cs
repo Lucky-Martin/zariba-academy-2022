@@ -8,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] public float MaxHealth;
     [SerializeField] public float Health;
     [SerializeField] public Slider HealthBarUI;
+    
+    public GameEvent onPlayerDeath;
 
     private void Start()
     {
@@ -18,6 +20,9 @@ public class PlayerHealth : MonoBehaviour
     {
         Health -= damage;
         UpdateHealthBar();
+        if(Health <= 0) {
+            onPlayerDeath?.Raise(this, true);
+        }
     }
 
     public void AddHealth(float health)
