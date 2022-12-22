@@ -78,7 +78,7 @@ public class RaiseDead : ASkill
         GameObject thunderClapEffect = Instantiate(
             raiseDeadVFX,
             (
-                caster.transform.forward
+                caster.transform.position + caster.transform.forward
             ),
             Random.rotation
         );

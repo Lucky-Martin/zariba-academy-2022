@@ -38,7 +38,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            onScoreChange?.Raise(this, 50f);
+            onScoreChange?.Raise(this, 10000f);
         }
 
         if(Input.GetKeyDown(KeyCode.K))
@@ -48,7 +48,7 @@ public class PlayerMovementScript : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.L))
         {
-            addExperience?.Raise(this, 20f);
+            addExperience?.Raise(this, 10000f);
         }
 
 
