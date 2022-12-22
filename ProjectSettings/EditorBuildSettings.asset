@@ -5,14 +5,17 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/UI-Assets/Cainos/Pixel Art Icon Pack - RPG/Scene/SC Pixel Art Icon
       Pack - RPG.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MartinMenuScene.unity
     guid: eb3112ee075f4c9429c20a28bcb60e01
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Martin Scene.unity
     guid: c17975192c70a504abba99a5234f8a49
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 4585eba243098224d96b43db8df037d2
   m_configObjects: {}
