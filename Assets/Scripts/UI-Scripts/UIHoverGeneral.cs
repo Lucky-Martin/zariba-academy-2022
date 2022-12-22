@@ -14,6 +14,7 @@ public class UIHoverGeneral : UIHover
 
     public GameObject panelToEnable;
     public GameObject panelToEnable2;
+    public GameObject panelToEnable3;
     public GameObject panelToDisable;
     public GameObject panelToDisable2;
 
@@ -65,6 +66,11 @@ public class UIHoverGeneral : UIHover
         if(panelToEnable2 != null)
         {
             panelToEnable2.SetActive(true);
+        }
+
+        if(panelToEnable3 != null)
+        {
+            panelToEnable3.SetActive(true);
         }
 
         if (panelToDisable != null)

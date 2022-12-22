@@ -380,13 +380,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ce0d01047c38940bfdcbdf118294e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledPicsPanel: {fileID: 0}
-  enabledPicsPanel: {fileID: 0}
-  picToEnable: {fileID: 0}
+  disabledPicsPanel: {fileID: 1590379098}
+  enabledPicsPanel: {fileID: 1213058711}
+  picToEnable: {fileID: 47104584}
   panelToEnable: {fileID: 1320517673}
   panelToEnable2: {fileID: 108045021}
+  panelToEnable3: {fileID: 1213058711}
   panelToDisable: {fileID: 321073009}
-  panelToDisable2: {fileID: 1213058711}
+  panelToDisable2: {fileID: 0}
   disabledTextPanel: {fileID: 453665500}
   enabledTextPanel: {fileID: 145515887}
   textToEnable: {fileID: 1727925697}
@@ -800,7 +801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Select The Resource You Want To Collect
+  m_text: 'Hover The Resource You Want To Collect
 
 '
   m_isRightToLeft: 0
@@ -1431,7 +1432,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Select Unit Actions
+  m_text: Hover Over Command To Choose It
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2346,6 +2347,7 @@ MonoBehaviour:
   picToEnable: {fileID: 499396458}
   panelToEnable: {fileID: 108045021}
   panelToEnable2: {fileID: 1213058711}
+  panelToEnable3: {fileID: 0}
   panelToDisable: {fileID: 0}
   panelToDisable2: {fileID: 0}
   disabledTextPanel: {fileID: 453665500}
@@ -2702,6 +2704,7 @@ MonoBehaviour:
   picToEnable: {fileID: 485418572}
   panelToEnable: {fileID: 108045021}
   panelToEnable2: {fileID: 1213058711}
+  panelToEnable3: {fileID: 0}
   panelToDisable: {fileID: 0}
   panelToDisable2: {fileID: 0}
   disabledTextPanel: {fileID: 453665500}
@@ -3154,6 +3157,7 @@ MonoBehaviour:
   picToEnable: {fileID: 828874986}
   panelToEnable: {fileID: 108045021}
   panelToEnable2: {fileID: 1213058711}
+  panelToEnable3: {fileID: 0}
   panelToDisable: {fileID: 0}
   panelToDisable2: {fileID: 0}
   disabledTextPanel: {fileID: 453665500}
@@ -3790,7 +3794,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Select The Direction In Which You Want The Zombie To Try And Collect The
+  m_text: Click The Direction In Which You Want The Zombie To Try And Collect The
     Resource
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4196,7 +4200,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 60cad586e18ff464ea70cd24dbd3d1eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f82f3d577c6ed2d4483652f32b1cfb00, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4678,7 +4682,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Select Direction To Go And Fight Enemies At
+  m_text: Click On Direction Where To Fight Enemies
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4903,13 +4907,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ce0d01047c38940bfdcbdf118294e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledPicsPanel: {fileID: 0}
-  enabledPicsPanel: {fileID: 0}
-  picToEnable: {fileID: 0}
-  panelToEnable: {fileID: 0}
-  panelToEnable2: {fileID: 0}
-  panelToDisable: {fileID: 1320517673}
-  panelToDisable2: {fileID: 1213058711}
+  disabledPicsPanel: {fileID: 1590379098}
+  enabledPicsPanel: {fileID: 1213058711}
+  picToEnable: {fileID: 1478412182}
+  panelToEnable: {fileID: 1213058711}
+  panelToEnable2: {fileID: 1320517673}
+  panelToEnable3: {fileID: 0}
+  panelToDisable: {fileID: 108045021}
+  panelToDisable2: {fileID: 321073009}
   disabledTextPanel: {fileID: 453665500}
   enabledTextPanel: {fileID: 145515887}
   textToEnable: {fileID: 369664897}
@@ -5299,6 +5304,7 @@ MonoBehaviour:
   picToEnable: {fileID: 0}
   panelToEnable: {fileID: 1320517673}
   panelToEnable2: {fileID: 321073009}
+  panelToEnable3: {fileID: 0}
   panelToDisable: {fileID: 108045021}
   panelToDisable2: {fileID: 1213058711}
   disabledTextPanel: {fileID: 453665500}
