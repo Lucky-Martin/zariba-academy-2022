@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EndScreen : MonoBehaviour
 {
@@ -23,6 +25,7 @@ public class EndScreen : MonoBehaviour
     protected TextMeshProUGUI ScoreMesh;
     
     private Animator animator;
+    private bool open;
 
     public void Start()
     {
@@ -31,6 +34,14 @@ public class EndScreen : MonoBehaviour
         WaveMesh = transform.Find("WaveText").gameObject.GetComponent<TextMeshProUGUI>();
         ExperienceMesh = transform.Find("ExperienceText").gameObject.GetComponent<TextMeshProUGUI>();
         ScoreMesh = transform.Find("FinalScore").gameObject.GetComponent<TextMeshProUGUI>();
+    }
+
+    private void Update()
+    {
+        if (open && Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public float CalculateExperience()
@@ -63,7 +74,9 @@ public class EndScreen : MonoBehaviour
 
     public void HandleDeathEvent(Component sender, object data)
     {
-        if(data is bool) {
+        if(data is bool)
+        {
+            open = true;
             animator.SetBool("Open", true);
             TitleMesh.text = string.Format(title); 
             WaveMesh.text = string.Format(waveText, wave, waveMultiplier); 
