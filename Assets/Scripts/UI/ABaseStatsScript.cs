@@ -16,7 +16,6 @@ abstract public class ABaseStatsScript : MonoBehaviour
 
     public void Start()
     {
-        // Debug.Log(transform);
         TextMeshValue = transform.Find("ValueTextMesh").gameObject.GetComponent<TextMeshProUGUI>();
     }
 

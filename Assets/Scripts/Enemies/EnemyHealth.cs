@@ -25,6 +25,9 @@ public class EnemyHealth : MonoBehaviour
 
         if(Health <= 0) {
             onDeath?.Raise(this, gameObject);
+            Destroy(healthBarUI);
+            Destroy(this);
+            return;
         }
         UpdateHealthBar();
     }
@@ -37,17 +40,12 @@ public class EnemyHealth : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        Debug.Log($"Health {Health}; Max Health {MaxHealth}; Ratio {GetRatio()}");
+        // Debug.Log($"Health {Health}; Max Health {MaxHealth}; Ratio {GetRatio()}");
         slider.value = GetRatio();
         
         if (MaxHealth > Health)
         {
             healthBarUI.SetActive(true);
-        }
-
-        if (Health <= 0)
-        {
-            Destroy(gameObject);
         }
     }
     

@@ -2,5 +2,6 @@ public enum EnemyStates
 {
     Idle,
     Running,
-    Attacking
+    Attacking,
+    Dead
 }
